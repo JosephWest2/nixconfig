@@ -5,7 +5,7 @@
         homeDirectory = "/home/josephw";
         stateVersion = "24.05";
         packages = with pkgs; [
-            neofetch
+	    ripgrep
 	    fzf
 	    zoxide
         ];
@@ -21,6 +21,13 @@
 	shellAliases = {
 	    tmux = "tmux -2";
 	};
+    };
+    programs.zoxide = {
+	enable = true;
+	enableZshIntegration = true;
+	options = [
+	    "--cmd cd"
+	];
     };
     programs.tmux = {
 	enable = true;
@@ -49,7 +56,7 @@
 	    }
 	    {
 		action = ":NvimTreeClose <CR>";
-		key = "<Leader>T";
+		key = "<Leader>r";
 	    }
 	];
 	colorschemes.onedark.enable = true;
@@ -67,7 +74,11 @@
 		enable = true;
 		servers = {
 		    clangd.enable = true;
-		    rust-analyzer.enable = true;
+		    rust-analyzer = {
+			enable = true;
+			installCargo = false;
+			installRustc = false;
+		    };
 		    gopls.enable = true;
 		    nixd.enable = true;
 		};
@@ -95,6 +106,7 @@
 		    "(" = { escape = false; close = true; pair = "()"; };
 		    "[" = { escape = false; close = true; pair = "[]"; };
 		    "{" = { escape = false; close = true; pair = "{}"; };
+		    "<" = { escape = false; close = true; pair = "<>"; };
 
 		    "'" = { escape = false; close = false; pair = "''"; };
 		};
