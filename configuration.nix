@@ -112,6 +112,7 @@
      wget
      firefox
      git
+     gh
 
      home-manager
      

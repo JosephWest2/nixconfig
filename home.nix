@@ -16,7 +16,6 @@
 	    zig
 
 	    obsidian
-	    gh
         ];
     };
     programs.git = {
