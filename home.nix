@@ -8,6 +8,15 @@
 	    ripgrep
 	    fzf
 	    zoxide
+
+	    zig
+	    cargo
+	    rustc
+	    go
+	    zig
+
+	    obsidian
+	    gh
         ];
     };
     programs.git = {
@@ -73,6 +82,7 @@
 	    lsp = {
 		enable = true;
 		servers = {
+		    zls.enable = true;
 		    clangd.enable = true;
 		    rust-analyzer = {
 			enable = true;
