@@ -94,9 +94,7 @@
 	    lsp = {
 		enable = true;
 		servers = {
-		    zls = {
-			enable = true;
-		    };
+		    zls.enable = true;
 		    clangd.enable = true;
 		    rust_analyzer = {
 			enable = true;
@@ -117,7 +115,16 @@
 		};
 	    };
 	    lsp-format.enable = true;
-	    cmp-nvim-lsp-signature-help.enable = true;
+	    cmp = {
+		enable = true;
+		autoEnableSources = true;
+		settings.sources = [
+		    { name = "nvim_lsp"; }
+		    { name = "path"; }
+		    { name = "buffer"; }
+		];
+	    };
+	    lsp-signature.enable = true;
 	    auto-save = {
 		enable = true;
 		settings.noautocmd = true;
