@@ -3,7 +3,6 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 { config, lib, pkgs, ... }:
-
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -48,7 +47,7 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   # Enable the X11 windowing system.
    services.xserver.enable = true;

@@ -1,46 +1,58 @@
-{ pkgs, inputs, ...}: {
-    imports = [ inputs.nixvim.homeManagerModules.nixvim ];
+{ pkgs, pkgs-stable, inputs, ...}: 
+{
+    imports = [
+	inputs.nixvim.homeManagerModules.nixvim
+    ];
     home = {
         username = "josephw";
         homeDirectory = "/home/josephw";
         stateVersion = "24.05";
-        packages = with pkgs; [
-	    ripgrep
-	    fzf
-	    zoxide
-
-	    zig
-	    cargo
-	    rustc
-	    go
-	    zig
-
-	    obsidian
-        ];
-    };
-    programs.git = {
-	enable = true;
-	userEmail = "joeywest1414@gmail.com";
-	userName = "josephwest2";
-    };
-    programs.zsh = {
-	enable = true;
-	syntaxHighlighting.enable = true;
-	shellAliases = {
-	    tmux = "tmux -2";
-	};
-    };
-    programs.zoxide = {
-	enable = true;
-	enableZshIntegration = true;
-	options = [
-	    "--cmd cd"
+	packages = [
+	    pkgs-stable.cargo
+	    pkgs-stable.rustc
+	    pkgs-stable.obsidian
+	    pkgs.zig
 	];
     };
-    programs.tmux = {
-	enable = true;
+    programs = {
+	go = {
+	    enable = true;
+	    package = pkgs.go;
+	};
+	ripgrep = {
+	    enable = true;
+	    package = pkgs.ripgrep;
+	};
+	fzf = {
+	    enable = true;
+	    package = pkgs.fzf;
+	};
+	git = {
+	    enable = true;
+	    userEmail = "joeywest1414@gmail.com";
+	    userName = "josephwest2";
+	};
+	zsh = {
+	    enable = true;
+	    syntaxHighlighting.enable = true;
+	    shellAliases = {
+		tmux = "tmux -2";
+	    };
+	};
+	zoxide = {
+	    enable = true;
+	    package = pkgs.zoxide;
+	    enableZshIntegration = true;
+	    options = [
+		"--cmd cd"
+	    ];
+	};
+	tmux = {
+	    enable = true;
+	    package = pkgs.tmux;
 	    terminal = "screen-256color";
 	};
+    };
     programs.nixvim = {
 	enable = true;
 	opts = {
@@ -69,6 +81,7 @@
 	];
 	colorschemes.onedark.enable = true;
 	plugins = {
+	    web-devicons.enable = true;
 	    telescope = {
 		enable = true;
 		keymaps = {
@@ -81,9 +94,11 @@
 	    lsp = {
 		enable = true;
 		servers = {
-		    zls.enable = true;
+		    zls = {
+			enable = true;
+		    };
 		    clangd.enable = true;
-		    rust-analyzer = {
+		    rust_analyzer = {
 			enable = true;
 			installCargo = false;
 			installRustc = false;
@@ -103,7 +118,10 @@
 	    };
 	    lsp-format.enable = true;
 	    cmp-nvim-lsp-signature-help.enable = true;
-	    auto-save.enable = true;
+	    auto-save = {
+		enable = true;
+		settings.noautocmd = true;
+	    };
 	    nvim-tree = {
 		enable = true;
 		disableNetrw = true;
