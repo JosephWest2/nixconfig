@@ -118,13 +118,53 @@
 	    cmp = {
 		enable = true;
 		autoEnableSources = true;
-		settings.sources = [
-		    { name = "nvim_lsp"; }
-		    { name = "path"; }
-		    { name = "buffer"; }
-		];
+		settings = {
+		    sources = [
+			{ name = "nvim_lsp"; }
+			{ name = "luasnip"; }
+			{ name = "path"; }
+			{ name = "buffer"; }
+		    ];
+		    mapping = {
+			__raw = ''
+			    cmp.mapping.preset.insert({
+				['<C-n>'] = cmp.mapping.select_next_item(),
+				['<C-p>'] = cmp.mapping.select_prev_item(),
+				['<C-e>'] = cmp.mapping.abort(),
+				['<C-y>'] = cmp.mapping.confirm({ select = true }),
+				['<C-k>'] = cmp.mapping(function(fallback)
+				    ls = require("luasnip")
+				    if ls.expand_or_jumpable() then
+					ls.expand_or_jump()
+				    end
+				end, { 'i', 's' }),
+				['<C-j>'] = cmp.mapping(function(fallback)
+				    ls = require("luasnip")
+				    if ls.jumpable(-1) then
+					ls.jump(-1)
+				    end
+				end, { 'i', 's' }),
+			    })
+			'';
+		    };
+		    snippet.expand = "function(args) require('luasnip').lsp_expand(args.body) end";
+		};
 	    };
-	    lsp-signature.enable = true;
+	    luasnip = {
+		enable = true;
+	    };
+	    lsp-signature = {
+		enable = true;
+		settings = {
+		    extra_trigger_chars = [
+			","
+			")"
+			" "
+		    ];
+		    hint_enable = false;
+		    toggle_key = "<C-k>";
+		};
+	    };
 	    auto-save = {
 		enable = true;
 		settings.noautocmd = true;
