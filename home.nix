@@ -15,6 +15,7 @@
 	];
 	sessionPath = [
 	    "~/bin"
+	    "~/.dotfiles/nixosgit"
 	];
     };
     programs = {
