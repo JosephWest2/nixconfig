@@ -1,6 +1,0 @@
-#!bash
-cp /etc/nixos/* ~/.dotfiles/nixosgit
-git add .
-git commit -m "updated config"
-git push -u origin main
-find ~/.dotfiles/nixosgit -maxdepth 1 -type f ! -name "nixsave" -delete
