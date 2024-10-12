@@ -14,8 +14,7 @@
 	    pkgs.zig
 	];
 	sessionPath = [
-	    "~/bin"
-	    "~/.dotfiles/nixosgit"
+	    "/home/josephw/bin"
 	];
     };
     programs = {
