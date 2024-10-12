@@ -1,3 +1,4 @@
+chroot ~/.dotfiles/nixosgit
 cp /etc/nixos/* ~/.dotfiles/nixosgit
 echo saved config
 git add .

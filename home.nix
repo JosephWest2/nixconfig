@@ -13,6 +13,9 @@
 	    pkgs-stable.obsidian
 	    pkgs.zig
 	];
+	sessionPath = [
+	    "~/bin"
+	];
     };
     programs = {
 	go = {
@@ -37,6 +40,8 @@
 	    syntaxHighlighting.enable = true;
 	    shellAliases = {
 		tmux = "tmux -2";
+		nixd = "nix develop --command zsh";
+		nixrb = "sudo nixos-rebuild switch";
 	    };
 	};
 	zoxide = {
