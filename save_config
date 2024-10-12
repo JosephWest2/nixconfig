@@ -1,4 +1,4 @@
-#!/bin/bash
+#!bash
 cp /etc/nixos/* ~/.dotfiles/nixosgit
 git add .
 git commit -m "updated config"
